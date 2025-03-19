@@ -1,100 +1,907 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>해외 취업 멘토링 플랫폼</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>황광호 포트폴리오</title>
+    <style>
+        /* 기본 스타일 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 헤더 스타일 */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            z-index: 1001;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #007bff;
+        }
+        
+        /* 모바일 메뉴 버튼 */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* 히어로 섹션 스타일 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0 40px;
+            background-color: #f1f3f5;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .profile-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0069d9;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: #007bff;
+            border: 2px solid #007bff;
+        }
+        
+        .btn-outline:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        
+        /* 소개 섹션 스타일 */
+        .section {
+            padding: 70px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+        }
+        
+        /* 스킬 스타일 */
+        .skills {
+            background-color: #fff;
+        }
+        
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .skill-item {
+            padding: 25px 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .skill-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+        
+        .skill-item h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+        
+        /* 프로젝트 스타일 */
+        .projects {
+            background-color: #f1f3f5;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .project-item {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .project-content p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .project-tag {
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+        
+        /* 연락처 스타일 */
+        .contact {
+            background-color: #fff;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .btn-submit:hover {
+            background-color: #0069d9;
+        }
+        
+        /* 푸터 스타일 */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-info {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-info h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .footer-info p {
+            margin-bottom: 8px;
+            color: #aaa;
+            font-size: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: #fff;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #007bff;
+        }
+        
+        .footer-links {
+            flex: 1;
+            min-width: 150px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .footer-links a:hover {
+            color: #fff;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* 모바일 메뉴 스타일 */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 250px;
+            height: 100vh;
+            background-color: #fff;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 20px 30px;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu-links {
+            list-style: none;
+        }
+        
+        .mobile-menu-links li {
+            margin-bottom: 15px;
+        }
+        
+        .mobile-menu-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+        
+        .mobile-menu-links a:hover {
+            color: #007bff;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        /* 애니메이션 스타일 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 반응형 스타일 */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-top: 30px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .profile-image {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .section {
+                padding: 50px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .skill-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-image {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .hero h1 {
+                font-size: 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .skill-item, .project-content {
+                padding: 15px;
+            }
+            
+            .project-image {
+                height: 160px;
+            }
+            
+            body {
+                font-size: 15px;
+            }
+        }
+        
+        /* 터치 디바이스 최적화 */
+        @media (hover: none) {
+            .btn:hover, .project-item:hover, .skill-item:hover {
+                transform: none;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- 헤더 섹션 -->
     <header>
         <div class="container">
-            <div class="logo">
-                <h1>HWANG</h1>
-            </div>
             <nav>
-                <div class="menu-toggle" id="mobile-menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="/index.html">홈</a></li>
-                    <li><a href="/intro.html">서비스</a></li>
-                    <li><a href="#">추천사</a></li>
-                    <li><a href="#">고객 후기</a></li>
-                    <li><a href="#">문의</a></li>
+                <div class="logo">황광호</div>
+                <ul class="nav-links">
+                    <li><a href="#home">홈</a></li>
+                    <li><a href="#about">소개</a></li>
+                    <li><a href="#skills">기술</a></li>
+                    <li><a href="#projects">프로젝트</a></li>
+                    <li><a href="#contact">연락처</a></li>
                 </ul>
+                <button class="menu-toggle">☰</button>
             </nav>
         </div>
     </header>
+    
+    <!-- 모바일 메뉴 -->
+    <div class="mobile-menu">
+        <ul class="mobile-menu-links">
+            <li><a href="#home" class="mobile-link">홈</a></li>
+            <li><a href="#about" class="mobile-link">소개</a></li>
+            <li><a href="#skills" class="mobile-link">기술</a></li>
+            <li><a href="#projects" class="mobile-link">프로젝트</a></li>
+            <li><a href="#contact" class="mobile-link">연락처</a></li>
+        </ul>
+    </div>
+    
+    <div class="overlay"></div>
 
-    <section id="hero">
+    <!-- 히어로 섹션 -->
+    <section class="hero" id="home">
         <div class="container">
-            <h2>Hwang</h2>
-            <p>Hi I'm Hwang</p>
-            <a href="https://forms.gle/NnNFjfzxg97rs1JGA" class="btn-learn-more">사전 예약 신청하기</a>
-        </div>
-    </section>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>안녕하세요,<br> <span style="color: #007bff;">황광호</span>입니다</h1>
+                    <p>고교시절 부터 창업을 꿈꾸며 코딩, 스타트업을 공부해왔습니다. <br>
 
-    <section id="features">
-        <div class="container">
-            <h2>Hak</h2>
-            <div class="feature">
-                <p>직무 부트캠프<br>장점 설명</p>
-            </div>
-            <div class="feature">
-                <p>해외취업멘토링<br>장점 설명</p>
-            </div>
-            <div class="feature">
-                <p>단락 텍스트를 손쉽게 추가 및<br>편집하려면 클릭하세요</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2>Intro</h2>
-            <p>회사 및 서비스를 소개하는 글을 작성해보세요. 해당 섹션을 통해 회사에 대한 자세한 정보를 추가할 수 있습니다.</p>
-        </div>
-    </section>
-
-    <section id="testimonials">
-        <div class="container">
-            <h2>Aw<br>여기를 클릭하여 편집하세요.</h2>
-            <div class="testimonial">
-                <p>고객 1<br>브레인컴퍼니</p>
-            </div>
-            <div class="testimonial">
-                <p>고객 2<br>브레인컴퍼니</p>
-            </div>
-            <div class="testimonial">
-                <p>멘토1<br>브레인컴퍼니</p>
+                        현재는 다양한 자기 개발 활동을 바탕으로 내실을 쌓으며 <br>창업을 준비해나가고 있습니다.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+                        <a href="#contact" class="btn btn-outline">연락하기</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="/증명사진.jpeg" alt="황광호 프로필 이미지" class="profile-image">
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
+    <!-- 소개 섹션 -->
+    <section class="section" id="about">
         <div class="container">
-            <h2>신청 문의</h2>
-            소개 소개 소개 소개 <br>
-            소개 소개 소개 
-            <a href="https://forms.gle/NnNFjfzxg97rs1JGA" class="btn-learn-more">사전 예약 신청하기</a>
-            <p>고려대학교 한송현<br> 전북대학교 황광호 <br>Email: info@mysite.com<br>Tel: 010-0000-7890</p>
+            <div class="section-title fade-in">
+                <h2>소개</h2>
+                <p>저에 대해 더 알아보세요</p>
+            </div>
+            <div class="fade-in">
+                <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 17px; line-height: 1.8;">
+                    저는 사용자 중심의 웹 개발에 열정을 가진 개발자입니다. 최신 웹 기술과 디자인 트렌드를 적용하여 사용자 경험을 향상시키는 것을 목표로 합니다. 다양한 프로젝트 경험을 통해 문제 해결 능력을 키웠으며, 팀과의 협업을 통해 더 나은 결과물을 만들어내는 것을 좋아합니다.
+                </p>
+            </div>
         </div>
     </section>
 
+    <!-- 기술 섹션 -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>기술</h2>
+                <p>저의 전문 분야입니다</p>
+            </div>
+            <div class="skill-grid">
+                <div class="skill-item fade-in">
+                    <div class="skill-icon">💻</div>
+                    <h3>프론트엔드 개발</h3>
+                    <p>HTML, CSS, JavaScript를 활용한 반응형 웹 사이트 개발</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>백엔드 개발</h3>
+                    <p>Node.js, Express를 활용한 서버 및 API 개발</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-icon">🎨</div>
+                    <h3>UI/UX 디자인</h3>
+                    <p>사용자 중심의 인터페이스 디자인 및 프로토타이핑</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-icon">📱</div>
+                    <h3>반응형 웹</h3>
+                    <p>모바일부터 데스크톱까지 모든 기기에 최적화된 웹 개발</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-icon">🔍</div>
+                    <h3>SEO 최적화</h3>
+                    <p>검색 엔진 최적화를 통한 웹사이트 노출 향상</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-icon">🚀</div>
+                    <h3>성능 최적화</h3>
+                    <p>웹사이트 로딩 속도 및 사용자 경험 개선</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 프로젝트 섹션 -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>프로젝트</h2>
+                <p>저의 최근 작업물입니다</p>
+            </div>
+            <div class="project-grid">
+                <div class="project-item fade-in">
+                    <img src="/api/placeholder/400/300" alt="프로젝트 이미지" class="project-image">
+                    <div class="project-content">
+                        <h3>포트폴리오 웹사이트</h3>
+                        <p>개인 포트폴리오를 위한 반응형 웹사이트 제작</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                        <a href="#" class="btn btn-outline">자세히 보기</a>
+                    </div>
+                </div>
+                <div class="project-item fade-in">
+                    <img src="/api/placeholder/400/300" alt="프로젝트 이미지" class="project-image">
+                    <div class="project-content">
+                        <h3>온라인 쇼핑몰</h3>
+                        <p>사용자 친화적인 인터페이스의 이커머스 웹사이트</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Node.js</span>
+                        </div>
+                        <a href="#" class="btn btn-outline">자세히 보기</a>
+                    </div>
+                </div>
+                <div class="project-item fade-in">
+                    <img src="/api/placeholder/400/300" alt="프로젝트 이미지" class="project-image">
+                    <div class="project-content">
+                        <h3>블로그 플랫폼</h3>
+                        <p>개인 블로그를 위한 맞춤형 CMS 개발</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Node.js</span>
+                        </div>
+                        <a href="#" class="btn btn-outline">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 연락처 섹션 -->
+    <section class="section contact" id="contact">
+        <div class="container">
+          <div class="section-title fade-in">
+            <h2>연락처</h2>
+            <p>궁금한 점이나 협업 제안이 있으시면 연락주세요</p>
+          </div>
+          <div class="contact-form fade-in">
+            <form action="https://formspree.io/f/mblgdory" method="POST">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" placeholder="이름" required>
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" class="form-control" placeholder="이메일" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="subject" class="form-control" placeholder="제목" required>
+              </div>
+              <div class="form-group">
+                <textarea name="message" class="form-control" placeholder="메시지" required></textarea>
+              </div>
+              <button type="submit" class="btn-submit">메시지 보내기</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+    
+
+    <!-- 푸터 섹션 -->
     <footer>
         <div class="container">
-            <p>© 2024 Name. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>황광호</h3>
+                    <p>웹 개발자</p>
+                    <p>이메일: email@example.com</p>
+                    <p>전화번호: 010-1234-5678</p>
+                    <div class="social-links">
+                        <a href="#"><span>🔗</span></a>
+                        <a href="#"><span>🔗</span></a>
+                        <a href="#"><span>🔗</span></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>바로가기</h3>
+                    <ul>
+                        <li><a href="#home">홈</a></li>
+                        <li><a href="#about">소개</a></li>
+                        <li><a href="#skills">기술</a></li>
+                        <li><a href="#projects">프로젝트</a></li>
+                        <li><a href="#contact">연락처</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 황광호. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
-    <script> 
-        document.getElementById('mobile-menu').addEventListener('click', function() {
-    var navLinks = document.getElementById('nav-links');
-    navLinks.classList.toggle('active');
-});
+
+    <script>
+        // 모바일 메뉴 토글
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const overlay = document.querySelector('.overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        overlay.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // 스크롤 시 헤더 스타일 변경
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        // 부드러운 스크롤 이동
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const headerOffset = 60;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 스크롤 시 애니메이션 효과
+        function checkFadeElements() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 50) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        // 스크롤 이벤트에 애니메이션 체크 함수 등록 (성능 최적화)
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
+            }
+            
+            scrollTimeout = window.requestAnimationFrame(function() {
+                checkFadeElements();
+            });
+        });
+        
+        // 페이지 로드 시 초기 애니메이션 실행
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                checkFadeElements();
+            }, 100);
+        });
+        
+        // 터치 이벤트 최적화 (모바일)
+        let touchStartY = 0;
+        
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        }, {passive: true});
+        
+            // 스크롤 이벤트 한 번 트리거하여 초기 요소 활성화
+            window.dispatchEvent(new Event('scroll'));
+        
+            document.querySelector("form").addEventListener("submit", function (e) {
+    alert("메시지가 전송되었습니다! 감사합니다 :)");
+  });
     </script>
 </body>
 </html>
