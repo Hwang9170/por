@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hwang-hwang.vercel.app/sitemap.xml
